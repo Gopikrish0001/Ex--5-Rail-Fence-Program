@@ -1,4 +1,6 @@
 # Ex--5-Rail-Fence-Program
+# NAME : GOPIKRISHNAN M
+# REGNO: 212223043001
 
 # IMPLEMENTATION OF RAIL FENCE – ROW & COLUMN TRANSFORMATION TECHNIQUE
 
@@ -20,48 +22,55 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 
 # PROGRAM
 ```
-PROGRAM:
 #include <stdio.h>
-#include <string.h>
-int main() {
-    int i, j, len, rails, count, dir;
-    char str[1000];
-    int code[100][1000] = {0};  // Initialize the entire array to 0
-    printf("Enter a Secret Message:\n");
-    scanf("%s",str);
-    len = strlen(str);
-    printf("Enter number of rails:\n");
-    scanf("%d", &rails);
-    count = 0;
-    i = 0;
-    dir = 1;  
-    for (j = 0; j < len; j++) {
-        code[i][j] = str[j];
-        // Change direction if we reach the top or bottom rail
-        if (i == 0) {
-            dir = 1;
-        } else if (i == rails - 1) {
-            dir = -1;
-        }
-        i += dir;
-    }
-    printf("Encrypted Message:\n");
-    // Print the encrypted message
-    for (i = 0; i < rails; i++) {
-        for (j = 0; j < len; j++) {
-            if (code[i][j] != 0) {
-                printf("%c", code[i][j]);
-            }
-        }
-    }
-    printf("\n");
-    return 0;
-}
+ #include <string.h>
+ int main() {
+ int i, j, k, l;
+ char a[20], c[20], d[20];
+ printf("\n\t\tRAIL FENCE TECHNIQUE\n");
+
+ printf("\nEnter the input string: ");
+ fgets(a, sizeof(a), stdin);
+ 
+a[strcspn(a, "\n")] = '\0';
+ l = strlen(a); 
+
+ for (i = 0, j = 0; i < l; i++) {
+ if (i % 2 == 0) {
+ c[j++] = a[i];
+ }
+ }
+ for (i = 0; i < l; i++) {
+ if (i % 2 == 1) {
+ c[j++] = a[i];
+ }
+ }
+ c[j] = '\0'; 
+ printf("\nCipher text after applying rail fence: %s\n", c);
+ 
+ if (l % 2 == 0) {
+ k =l / 2;
+ } else {
+ k =(l / 2) + 1;
+ }
+ 
+ for (i = 0, j = 0; i < k; i++) {
+ d[j] = c[i];
+ j += 2;
+ }
+ for (i = k, j = 1; i < l; i++) {
+d[j] = c[i];
+ j += 2;
+ }
+ d[l] = '\0'; 
+ printf("\nText after decryption: %s\n", d);
+ return 0; 
+ }
+
 ```
 
 # OUTPUT
-![Screenshot 2025-03-27 090457](https://github.com/user-attachments/assets/a5b4bb0b-14ce-4c4d-9e9e-f141113d29ca)
-
+![image](https://github.com/user-attachments/assets/5d9ed8c6-5fa2-4aff-93ce-ca9645c96c87)
 
 # RESULT
 The program is executed successfully.
